@@ -175,9 +175,9 @@ namespace LyricsApp
                 return;
             }
 
-            Clipboard.Clear();          
-            Clipboard.SetText(tbLyrics.Text); 
-            string strClip = Clipboard.GetText();         
+            Clipboard.Clear();
+            Clipboard.SetText(tbLyrics.Text);
+            string strClip = Clipboard.GetText();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
