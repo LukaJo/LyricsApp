@@ -1,10 +1,14 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using YoutubeSearch;
+using HtmlAgilityPack;
+using System.Linq;
 
 namespace LyricsApp
 {
@@ -29,7 +33,6 @@ namespace LyricsApp
             string url = "https://api.lyrics.ovh/v1/" + tbArtist.Text + "/" + tbSong.Text;
 
 
-
             using (WebClient wc = new WebClient() { Encoding = Encoding.UTF8 })
             {
                 try
@@ -39,6 +42,15 @@ namespace LyricsApp
                     var result = JsonConvert.DeserializeObject<Lyrics>(json);
 
                     tbLyrics.Text = result.lyrics;
+
+                    var document = new HtmlWeb().Load(@"http://images.google.com/images?q=" + tbArtist.Text + "&start=1&ndsp=2");
+
+                    var ImageURLS = document.DocumentNode.Descendants("img")
+                               .Select(ee => ee.GetAttributeValue("src", null))
+                               .Where(s => !String.IsNullOrEmpty(s)).ToList();
+
+                    pbImage.ImageLocation = ImageURLS[1].ToString();
+
                 }
                 catch (Exception)
                 {
@@ -178,11 +190,12 @@ namespace LyricsApp
             Clipboard.Clear();
             Clipboard.SetText(tbLyrics.Text);
             string strClip = Clipboard.GetText();
+            MessageBox.Show("Copied to clipboard!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            tbArtist.Text = tbSong.Text = tbLyrics.Text = string.Empty;
+            tbArtist.Text = tbSong.Text = tbLyrics.Text = pbImage.ImageLocation = string.Empty;
         }
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
@@ -226,9 +239,54 @@ namespace LyricsApp
 
         private void btnTranslate_Click(object sender, EventArgs e)
         {
-            var cir = PreslovljavanjeCirilica(tbLyrics.Text);
-            tbLyrics.Clear();
-            tbLyrics.Text = cir;
+            if (string.IsNullOrEmpty(tbLyrics.Text))
+            {
+                MessageBox.Show("There are no lyrics!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (Regex.IsMatch(tbLyrics.Text, @"\p{IsBasicLatin}"))
+            {
+                var cir = PreslovljavanjeCirilica(tbLyrics.Text);
+                tbLyrics.Clear();
+                tbLyrics.Text = cir;
+            }
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(tbLyrics.Text))
+            {
+                MessageBox.Show("There are no lyrics!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            try
+            {
+                File.WriteAllText(@"C:\Users\your\Documents\lyrics.txt", tbLyrics.Text, Encoding.UTF8);
+                MessageBox.Show("Successfully saved!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("File not saved!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        private void btnEmail_Click(object sender, EventArgs e)
+        {
+            EmailForm frm = new EmailForm();
+            frm.ShowDialog();
+        }
+
+        private void LyricsForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) this.Close();
+
+            if (e.KeyCode == Keys.Enter) btnFind.PerformClick();
         }
     }
 }

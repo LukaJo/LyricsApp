@@ -47,13 +47,17 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnEmail = new System.Windows.Forms.Button();
+            this.pbImage = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
             // 
             // btnFind
             // 
-            this.btnFind.Location = new System.Drawing.Point(551, 19);
+            this.btnFind.Location = new System.Drawing.Point(480, 20);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(75, 23);
             this.btnFind.TabIndex = 0;
@@ -73,7 +77,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(272, 22);
+            this.label2.Location = new System.Drawing.Point(242, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 2;
@@ -81,14 +85,14 @@
             // 
             // tbArtist
             // 
-            this.tbArtist.Location = new System.Drawing.Point(61, 19);
+            this.tbArtist.Location = new System.Drawing.Point(48, 22);
             this.tbArtist.Name = "tbArtist";
             this.tbArtist.Size = new System.Drawing.Size(188, 20);
             this.tbArtist.TabIndex = 3;
             // 
             // tbSong
             // 
-            this.tbSong.Location = new System.Drawing.Point(316, 19);
+            this.tbSong.Location = new System.Drawing.Point(286, 22);
             this.tbSong.Name = "tbSong";
             this.tbSong.Size = new System.Drawing.Size(188, 20);
             this.tbSong.TabIndex = 4;
@@ -102,7 +106,7 @@
             this.tbLyrics.Name = "tbLyrics";
             this.tbLyrics.ReadOnly = true;
             this.tbLyrics.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbLyrics.Size = new System.Drawing.Size(632, 416);
+            this.tbLyrics.Size = new System.Drawing.Size(559, 416);
             this.tbLyrics.TabIndex = 5;
             this.tbLyrics.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -111,7 +115,7 @@
             this.linkSong.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.linkSong.AutoSize = true;
             this.linkSong.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.linkSong.Location = new System.Drawing.Point(304, 502);
+            this.linkSong.Location = new System.Drawing.Point(226, 504);
             this.linkSong.Name = "linkSong";
             this.linkSong.Size = new System.Drawing.Size(125, 15);
             this.linkSong.TabIndex = 6;
@@ -132,7 +136,7 @@
             // 
             // btnClipboard
             // 
-            this.btnClipboard.Location = new System.Drawing.Point(666, 194);
+            this.btnClipboard.Location = new System.Drawing.Point(634, 221);
             this.btnClipboard.Name = "btnClipboard";
             this.btnClipboard.Size = new System.Drawing.Size(117, 23);
             this.btnClipboard.TabIndex = 8;
@@ -157,7 +161,7 @@
             // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(666, 237);
+            this.btnPrint.Location = new System.Drawing.Point(634, 250);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(117, 23);
             this.btnPrint.TabIndex = 9;
@@ -167,7 +171,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(666, 154);
+            this.btnRefresh.Location = new System.Drawing.Point(634, 192);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(117, 23);
             this.btnRefresh.TabIndex = 10;
@@ -177,7 +181,7 @@
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(666, 278);
+            this.btnSend.Location = new System.Drawing.Point(634, 320);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(117, 23);
             this.btnSend.TabIndex = 11;
@@ -194,7 +198,7 @@
             this.groupBox1.Controls.Add(this.btnFind);
             this.groupBox1.Location = new System.Drawing.Point(15, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(632, 54);
+            this.groupBox1.Size = new System.Drawing.Size(559, 54);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             // 
@@ -203,7 +207,7 @@
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.btnTranslate);
-            this.groupBox2.Location = new System.Drawing.Point(653, 388);
+            this.groupBox2.Location = new System.Drawing.Point(621, 388);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(148, 100);
             this.groupBox2.TabIndex = 13;
@@ -226,11 +230,43 @@
             this.label4.Size = new System.Drawing.Size(0, 13);
             this.label4.TabIndex = 9;
             // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(634, 279);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(117, 23);
+            this.btnSave.TabIndex = 14;
+            this.btnSave.Text = "Save to file";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnEmail
+            // 
+            this.btnEmail.Location = new System.Drawing.Point(634, 349);
+            this.btnEmail.Name = "btnEmail";
+            this.btnEmail.Size = new System.Drawing.Size(117, 23);
+            this.btnEmail.TabIndex = 15;
+            this.btnEmail.Text = "Send to Email";
+            this.btnEmail.UseVisualStyleBackColor = true;
+            this.btnEmail.Click += new System.EventHandler(this.btnEmail_Click);
+            // 
+            // pbImage
+            // 
+            this.pbImage.Location = new System.Drawing.Point(592, 12);
+            this.pbImage.Name = "pbImage";
+            this.pbImage.Size = new System.Drawing.Size(200, 161);
+            this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbImage.TabIndex = 16;
+            this.pbImage.TabStop = false;
+            // 
             // LyricsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 535);
+            this.Controls.Add(this.pbImage);
+            this.Controls.Add(this.btnEmail);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnSend);
@@ -239,12 +275,15 @@
             this.Controls.Add(this.btnClipboard);
             this.Controls.Add(this.linkSong);
             this.Controls.Add(this.tbLyrics);
+            this.KeyPreview = true;
             this.Name = "LyricsForm";
             this.Text = "Find lyrics";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LyricsForm_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -270,6 +309,9 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnEmail;
+        private System.Windows.Forms.PictureBox pbImage;
     }
 }
 
