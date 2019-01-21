@@ -16,7 +16,7 @@ Options:
 
 * Also you can copy song lyrics to clipboard and print it if you like.
 
-* Next to song lyrics there is displayed image of an artist fetched from google images using [HttpAgilityPack](https://html-agility-pack.net/) and LINQ)
+* Next to song lyrics there is displayed image of an artist fetched from google images(random) using [HttpAgilityPack](https://html-agility-pack.net/) and LINQ for web crawling)
 
 ## Installation
 
