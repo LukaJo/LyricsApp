@@ -22,6 +22,7 @@ namespace LyricsApp
         private void btnFind_Click(object sender, EventArgs e)
         {
             tbLyrics.Clear();
+            pbImage.ImageLocation = null;
 
             if (string.IsNullOrEmpty(tbArtist.Text) || string.IsNullOrEmpty(tbSong.Text))
             {
@@ -49,7 +50,10 @@ namespace LyricsApp
                                .Select(ee => ee.GetAttributeValue("src", null))
                                .Where(s => !String.IsNullOrEmpty(s)).ToList();
 
-                    pbImage.ImageLocation = ImageURLS[1].ToString();
+                    Random rnd = new Random();
+                    int random = rnd.Next(1, ImageURLS.Count);
+
+                    pbImage.ImageLocation = ImageURLS[random].ToString();
 
                 }
                 catch (Exception)
@@ -58,8 +62,10 @@ namespace LyricsApp
               DialogResult.Yes)
                         return;
 
-                    string url1 = TrailerUrl();
-                    System.Diagnostics.Process.Start(url1);
+                    List<string> songDetails = new List<string>();
+                    songDetails = TrailerUrl();
+                    YouTubeForm frm = new YouTubeForm(songDetails);
+                    frm.ShowDialog();
 
                 }
 
@@ -74,12 +80,14 @@ namespace LyricsApp
                 return;
             }
 
-
-            string url = TrailerUrl();
-            System.Diagnostics.Process.Start(url);
+            List<string> songDetails = new List<string>();
+            songDetails = TrailerUrl();
+            YouTubeForm frm = new YouTubeForm(songDetails);
+            frm.ShowDialog();
+                                    
         }
 
-        private string TrailerUrl()
+        private List<string> TrailerUrl()
         {
             string querystring = tbArtist.Text + "" + tbSong.Text;
 
@@ -91,7 +99,10 @@ namespace LyricsApp
 
             foreach (var item in items.SearchQuery(querystring, querypages))
             {
+                trailer.Add(item.Title);
+                trailer.Add(item.Duration);
                 trailer.Add(item.Url);
+                trailer.Add(item.Thumbnail);
                 if (trailer.Count == 1)
                 {
                     break;
@@ -99,8 +110,7 @@ namespace LyricsApp
 
             }
 
-            string url = trailer[0].ToString();
-            return url;
+            return trailer;
 
         }
 

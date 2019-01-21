@@ -45,8 +45,8 @@
             this.btnSend = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnEmail = new System.Windows.Forms.Button();
             this.pbImage = new System.Windows.Forms.PictureBox();
@@ -99,7 +99,6 @@
             // 
             // tbLyrics
             // 
-            this.tbLyrics.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.tbLyrics.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tbLyrics.Location = new System.Drawing.Point(15, 72);
             this.tbLyrics.Multiline = true;
@@ -112,7 +111,7 @@
             // 
             // linkSong
             // 
-            this.linkSong.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.linkSong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.linkSong.AutoSize = true;
             this.linkSong.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.linkSong.Location = new System.Drawing.Point(226, 504);
@@ -213,6 +212,14 @@
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(5, 38);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(0, 13);
+            this.label4.TabIndex = 9;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -221,14 +228,6 @@
             this.label3.Size = new System.Drawing.Size(111, 13);
             this.label3.TabIndex = 8;
             this.label3.Text = "Serbian songs only ***";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 38);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 13);
-            this.label4.TabIndex = 9;
             // 
             // btnSave
             // 
@@ -276,6 +275,8 @@
             this.Controls.Add(this.linkSong);
             this.Controls.Add(this.tbLyrics);
             this.KeyPreview = true;
+            this.MaximumSize = new System.Drawing.Size(820, 574);
+            this.MinimumSize = new System.Drawing.Size(820, 574);
             this.Name = "LyricsForm";
             this.Text = "Find lyrics";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LyricsForm_KeyDown);
