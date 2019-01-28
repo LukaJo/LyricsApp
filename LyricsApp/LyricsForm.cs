@@ -87,7 +87,7 @@ namespace LyricsApp
                                     
         }
 
-        private List<string> TrailerUrl()
+        public List<string> TrailerUrl()
         {
             string querystring = tbArtist.Text + "" + tbSong.Text;
 
