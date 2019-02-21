@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using YoutubeSearch;
 using HtmlAgilityPack;
 using System.Linq;
+using System.Drawing;
 
 namespace LyricsApp
 {
@@ -297,6 +298,29 @@ namespace LyricsApp
             if (e.KeyCode == Keys.Escape) this.Close();
 
             if (e.KeyCode == Keys.Enter) btnFind.PerformClick();
+        }
+
+        private void LyricsForm_Load(object sender, EventArgs e)
+        {
+            pbImage.AllowDrop = true;
+        }
+
+        private void pbImage_DragDrop(object sender, DragEventArgs e)
+        {
+            var data = e.Data.GetData(DataFormats.FileDrop);
+            if (data != null)
+            {
+                var fileNames = data as string[];
+                if (fileNames.Length >0)
+                {
+                    pbImage.Image = Image.FromFile(fileNames[0]);
+                }
+            }
+        }
+
+        private void pbImage_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Copy;
         }
     }
 }

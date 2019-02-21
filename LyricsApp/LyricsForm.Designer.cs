@@ -257,6 +257,8 @@
             this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbImage.TabIndex = 16;
             this.pbImage.TabStop = false;
+            this.pbImage.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbImage_DragDrop);
+            this.pbImage.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbImage_DragEnter);
             // 
             // LyricsForm
             // 
@@ -279,6 +281,7 @@
             this.MinimumSize = new System.Drawing.Size(820, 574);
             this.Name = "LyricsForm";
             this.Text = "Find lyrics";
+            this.Load += new System.EventHandler(this.LyricsForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LyricsForm_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
